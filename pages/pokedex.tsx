@@ -1,11 +1,30 @@
 import Link from "next/link"
-import searchPokemons from "../components/searchPokemons"
+// import searchPokemons from "../components/searchPokemons"
 
-export default function pokedex() {
+// import { useEffect, useState } from 'react';
 
-  const url = `https://pokeapi.co/api/v2/pokemon/pikachu`
+// type PokeProps = {
+//   url?: string;
+// }
 
-  searchPokemons(url)
+export const pokedex = () => {
+  // const [data, setData] = useState<string[]>([]);
+
+  // const getData = async () => {
+  //   try {
+  //     const res = await fetch(`url`);
+  //     const resJson = await res.json();
+  //     console.log(resJson);
+
+  //     setData(resJson)
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getData();
+  // }),[];
 
   return (
     <div>
@@ -14,7 +33,7 @@ export default function pokedex() {
         <Link href="/">Back to home</Link>
       </h2>
 
-      {/* {a && a.map((obj: any) => <div key={obj.id}>NOME: {obj.id}</div>)} */}
+      {/* {data && data.map((obj: any) => <div key={obj.id}>NOME: {obj.id}</div>)} */}
       {/* {a ? (<div>NOME: {a.name}</div>)} */}
     </div>
   )
