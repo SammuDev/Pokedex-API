@@ -59,7 +59,7 @@ const pokedex = () => {
       setFilteredPokemons(data.filter(poke => poke.name.includes(search.toLowerCase())));
     };
     AAA();
-  });
+  }, [data, search]);
 
   return (
     <div>
