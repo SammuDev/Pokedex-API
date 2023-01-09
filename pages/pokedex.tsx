@@ -1,14 +1,18 @@
 import Link from "next/link"
 // import searchPokemons from "../components/searchPokemons"
 
-// import { useEffect, useState } from 'react';
+import fetch from 'isomorphic-unfetch'
 
-// type PokeProps = {
-//   url?: string;
-// }
+import { useEffect, useState } from 'react';
+
+export interface PokeProps {
+  name: string;
+  id: number;
+  types: Array<{ type: { name: string } }>;
+}
 
 export default function pokedex() {
-  // const [data, setData] = useState<string[]>([]);
+  const [data, setData] = useState<PokeProps[]>([]);
 
   // const getData = async () => {
   //   try {
@@ -22,6 +26,13 @@ export default function pokedex() {
   //   }
   // };
 
+  const getPokemon = async (name: string): Promise<PokeProps> => {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    const resJson = await res.json();
+
+    setData(resJson);
+  };
+
   // useEffect(() => {
   //   getData();
   // }),[];
@@ -34,7 +45,6 @@ export default function pokedex() {
       </h2>
 
       {/* {data && data.map((obj: any) => <div key={obj.id}>NOME: {obj.id}</div>)} */}
-      {/* {a ? (<div>NOME: {a.name}</div>)} */}
     </div>
   )
 }
