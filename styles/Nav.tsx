@@ -11,4 +11,5 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
 `;
+
 export default Nav;

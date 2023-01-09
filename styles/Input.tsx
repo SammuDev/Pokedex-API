@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const Input = styled.input.attrs({
   type: 'email',
@@ -8,6 +8,6 @@ const Input = styled.input.attrs({
   border-radius: 5px;
   width: 100%;
   padding: 10px;
-`
+`;
 
-export default Input
+export default Input;

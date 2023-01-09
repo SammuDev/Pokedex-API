@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const ButtonSubmit = styled.button.attrs({
 })`
@@ -18,6 +18,6 @@ const ButtonSubmit = styled.button.attrs({
   &:hover {
     background-color: #0039a3;
   }
-`
+`;
 
-export default ButtonSubmit
+export default ButtonSubmit;

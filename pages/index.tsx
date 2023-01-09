@@ -1,14 +1,14 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import ButtonSubmit from '../styles/ButtonSubmit'
-import EnUs from '../styles/EnUs'
-import Input from '../styles/Input'
-import Logo from '../styles/Logo'
-import MainBox from '../styles/MainBox'
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import ButtonSubmit from '../styles/ButtonSubmit';
+import EnUs from '../styles/EnUs';
+import Input from '../styles/Input';
+import Logo from '../styles/Logo';
+import MainBox from '../styles/MainBox';
 
-import Nav from '../styles/Nav'
-import PokeBoxIMG from '../styles/PokeBoxIMG'
+import Nav from '../styles/Nav';
+import PokeBoxIMG from '../styles/PokeBoxIMG';
 
 export default function Home() {
 
@@ -53,5 +53,5 @@ export default function Home() {
         </MainBox>
       </main>
     </div>
-  )
-}
+  );
+};

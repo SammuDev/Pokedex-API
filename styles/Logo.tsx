@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const Logo = styled.img.attrs({
   src:"https://cdn.riderize.com/miscellaneous/logo-pokedex.png",
@@ -6,6 +6,6 @@ const Logo = styled.img.attrs({
 })`
   width: 200px;
   margin-left: 40px;
-`
+`;
 
-export default Logo
+export default Logo;
