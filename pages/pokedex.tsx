@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import PokeScrow from "../styles/styledsPokedex/PokeScrow";
 import Link from "next/link";
 import PokesmonsScrow from "../styles/styledsPokedex/PokesmonsScrow";
@@ -28,9 +28,9 @@ type PokeProps = {
 };
 
 const pokedex = () => {
-  const [data, setData] = useState<Array<PokeProps>>([]);
+  const [data, setData] = useState<PokeProps[]>([]);
+  const [filteredPokemons, setFilteredPokemons] = useState<PokeProps[]>([]);
   const [search, setSearch] = useState('');
-  const [filteredPokemons, setFilteredPokemons] = useState<Array<PokeProps>>([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -55,14 +55,11 @@ const pokedex = () => {
   }, []);
 
   useEffect(() => {
-    const filtering = () => {
-      const filtered = search.toLowerCase();
-      setFilteredPokemons((): any => {
-        data.filter((poke: any) => poke.name.includes(filtered))
-      });
-    }
-    filtering();
-  }, [data, search]);
+    const AAA = () => {
+      setFilteredPokemons(data.filter(poke => poke.name.includes(search.toLowerCase())));
+    };
+    AAA();
+  });
 
   return (
     <div>
@@ -80,27 +77,29 @@ const pokedex = () => {
 
           <Paragraphy>Everything you wanted to know about<br /> your favorite pocket monster!</Paragraphy>
 
-          <InputSearch value={search} onChange={(e) => setSearch(e.target.value)}/>
+          <InputSearch value={search} onChange={e => setSearch(e.target.value)}/>
 
           <hr />
 
           <PokeScrow>
-            {search ? data.map(poke => (
+            {!search && data.map(poke => (
               <div key={poke.id}>
                 #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
               </div>
-            )) : filteredPokemons.map(poke => (
+            ))}
+
+            {filteredPokemons.map(poke => (
               <div key={poke.name}>
-                #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
+                #{poke.id < 10 ? `**00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
               </div>
             ))}
           </PokeScrow>
         </PokesmonsScrow>
 
         <PokeData>
-          {/* {data.map(poke => (
+          {data.map(poke => (
             <Card key={poke.id} pokemon={poke}/>
-          ))} */}
+          ))}
         </PokeData>
       </MainCustom>
     </div>
