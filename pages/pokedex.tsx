@@ -7,7 +7,7 @@ import Link from "next/link"
 //   url?: string;
 // }
 
-export const pokedex = () => {
+export default function pokedex() {
   // const [data, setData] = useState<string[]>([]);
 
   // const getData = async () => {
