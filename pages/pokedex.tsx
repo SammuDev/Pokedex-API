@@ -1,8 +1,44 @@
 import Head from "next/head";
-import Link from "next/link";
-import FetchApi from "../components/FetchApi";
+import React, { useEffect, useState } from "react";
 
-const pokedex = () => {
+type PokeProps = {
+  id: string;
+  number: string;
+  name: string;
+  image: string;
+  fetchedAt: string;
+  attacks: {
+    special: Array<{
+      name: string;
+      type: string;
+      damage: number;
+    }>
+  }
+};
+
+const pokedex: React.FC = () => {
+  const [pokemons, setPokemons] = useState<Array<PokeProps>>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const maxPokemons = 100;
+        const url = 'https://pokeapi.co/api/v2/pokemon';
+
+        const res = await fetch(`${url}/?limit=${maxPokemons}`);
+        const data = await res.json();
+        console.log(data.results);
+
+        setPokemons(data.results);
+      }
+      catch (e) {
+        console.log(`Error: ${e}`);
+      }
+    };
+
+    getData();
+  }, []);
+
   return (
     <div>
       <Head>
@@ -11,11 +47,15 @@ const pokedex = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>First Post</h1>
-      <h2>
-        <Link href="/">Back to home</Link>
-      </h2>
-      <FetchApi pokemon={'pikachu'} />
+
+      <main>
+
+        <ul>
+          {pokemons.map(pokemon => (
+            <li key={pokemon.name}>{pokemon.id} - {pokemon.name}</li>
+          ))}
+        </ul>
+      </main>
     </div>
   );
 };
