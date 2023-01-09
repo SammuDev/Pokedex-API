@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import FetchApi from "../components/FetchApi";
 
 const pokedex = () => {
   return (
@@ -14,6 +15,7 @@ const pokedex = () => {
       <h2>
         <Link href="/">Back to home</Link>
       </h2>
+      <FetchApi pokemon={'pikachu'} />
     </div>
   );
 };
