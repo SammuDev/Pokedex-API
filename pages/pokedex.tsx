@@ -6,7 +6,9 @@ import PokesmonsScrow from "../styles/styledsPokedex/PokesmonsScrow";
 import Logo from "../styles/styledsHome/Logo";
 import Paragraphy from "../styles/styledsPokedex/Paragraphy";
 import InputSearch from "../styles/styledsPokedex/InputSearch";
-import Card from "../components/Card";
+import Card from "./Cards/Card";
+import PokeData from "../styles/styledsPokedex/PokeData";
+import Container from "../styles/styledsPokedex/Container";
 
 type PokeProps = {
   id: string;
@@ -49,6 +51,10 @@ const pokedex = () => {
     getData();
   }, []);
 
+  handleChange(e => {
+    e.target.value;
+  });
+
   return (
     <div>
       <Head>
@@ -57,9 +63,6 @@ const pokedex = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section>
-
-      </section>
 
       <main>
         <PokesmonsScrow>
@@ -68,7 +71,7 @@ const pokedex = () => {
 
           <Paragraphy>Everything you wanted to know about<br /> your favorite pocket monster!</Paragraphy>
 
-          <InputSearch/>
+          <InputSearch onChange={handleChange()}/>
 
           <hr />
 
@@ -81,7 +84,11 @@ const pokedex = () => {
           </PokeScrow>
         </PokesmonsScrow>
 
-        OI
+        <PokeData>
+          {pokemons.map(poke => (
+            <Card key={poke.id} pokemon={poke}/>
+          ))}
+        </PokeData>
       </main>
     </div>
   );

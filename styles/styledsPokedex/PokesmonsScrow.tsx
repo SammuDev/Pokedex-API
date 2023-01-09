@@ -7,6 +7,7 @@ const PokesmonsScrow = styled.aside`
   width: 300px;
   height: 100vh;
   text-align: center;
+  float: left;
 
   a {
     color: #fff;
