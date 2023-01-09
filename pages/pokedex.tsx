@@ -1,43 +1,47 @@
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
+import PokeScrow from "../styles/styledsPokedex/PokeScrow";
+import Link from "next/link";
+import PokesmonsScrow from "../styles/styledsPokedex/PokesmonsScrow";
 
-type PokeProps = {
-  id: string;
-  number: string;
-  name: string;
-  image: string;
-  fetchedAt: string;
-  attacks: {
-    special: Array<{
-      name: string;
-      type: string;
-      damage: number;
-    }>
-  }
-};
+// type PokeProps = {
+//   id: string;
+//   number: string;
+//   url: string;
+//   name: string;
+//   image: string;
+//   fetchedAt: string;
+//   attacks: {
+//     special: Array<{
+//       name: string;
+//       type: string;
+//       damage: number;
+//     }>
+//   }
+// };
 
-const pokedex: React.FC = () => {
-  const [pokemons, setPokemons] = useState<Array<PokeProps>>([]);
+const pokedex = () => {
+  // const [pokemons, setPokemons] = useState<Array<PokeProps>>([]);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const maxPokemons = 100;
-        const url = 'https://pokeapi.co/api/v2/pokemon';
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const maxPokemons = 10;
+  //       const url = 'https://pokeapi.co/api/v2/pokemon';
 
-        const res = await fetch(`${url}/?limit=${maxPokemons}`);
-        const data = await res.json();
-        console.log(data.results);
+  //       const res = await fetch(`${url}/?limit=${maxPokemons}`);
+  //       const data = await res.json();
+  //       console.log(data.results);
 
-        setPokemons(data.results);
-      }
-      catch (e) {
-        console.log(`Error: ${e}`);
-      }
-    };
+  //       setPokemons(data.results);
+  //     }
+  //     catch (e) {
+  //       console.log(`Error: ${e}`);
+  //     }
+  //   };
 
-    getData();
-  }, []);
+  //   getData();
+  // }, []);
 
   return (
     <div>
@@ -49,12 +53,17 @@ const pokedex: React.FC = () => {
       </Head>
 
       <main>
+        <PokesmonsScrow>
+          <Link href={'/'}>Home</Link>
 
-        <ul>
-          {pokemons.map(pokemon => (
-            <li key={pokemon.name}>{pokemon.id} - {pokemon.name}</li>
-          ))}
-        </ul>
+          <PokeScrow>
+            {/* <ul>
+              {pokemons.map(poke => (
+                <li key={poke.name}>{poke.name} - URL: {poke.url}</li>
+              ))}
+            </ul> */}
+          </PokeScrow>
+        </PokesmonsScrow>
       </main>
     </div>
   );
