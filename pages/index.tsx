@@ -1,4 +1,3 @@
-// import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -46,7 +45,9 @@ export default function Home() {
 
           <form>
             <Input/>
-            <ButtonSubmit><Link href="/pokedex">Acessar</Link></ButtonSubmit>
+            <ButtonSubmit>
+              <Link href="/pokedex">Acessar</Link>
+            </ButtonSubmit>
             {/* <Link href={'/pokedex'}>Pokedex Page</Link> */}
           </form>
         </MainBox>
