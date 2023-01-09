@@ -8,6 +8,14 @@ const PokeScrow = styled.div`
   overflow-y: scroll;
   float: right;
 
+  div {
+    margin: 20px 0;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
   &::-webkit-scrollbar {
     width: 5px;
     background-color: #F5F5F5;

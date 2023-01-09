@@ -8,15 +8,16 @@ import Paragraphy from "../styles/styledsPokedex/Paragraphy";
 import InputSearch from "../styles/styledsPokedex/InputSearch";
 import Card from "./Cards/Card";
 import PokeData from "../styles/styledsPokedex/PokeData";
-import Container from "../styles/styledsPokedex/Container";
+import MainCustom from "../styles/styledsPokedex/MainCustom";
 
 type PokeProps = {
-  id: string;
+  id: number;
   number: string;
   url: string;
   name: string;
   image: string;
   fetchedAt: string;
+  search: string;
   attacks: {
     special: Array<{
       name: string;
@@ -27,7 +28,9 @@ type PokeProps = {
 };
 
 const pokedex = () => {
-  const [pokemons, setPokemons] = useState<Array<PokeProps>>([]);
+  const [data, setData] = useState<Array<PokeProps>>([]);
+  const [search, setSearch] = useState('');
+  const [filteredPokemons, setFilteredPokemons] = useState<Array<PokeProps>>([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -36,12 +39,12 @@ const pokedex = () => {
         const url = 'https://pokeapi.co/api/v2/pokemon';
 
         const res = await fetch(`${url}/?limit=${maxPokemons}`);
-        const data = await res.json();
-        console.log(data.results);
+        const pokemons = await res.json();
+        console.log(pokemons.results);
 
-        data.results.forEach((obj: any, idx: number) => obj.id = idx + 1);
+        pokemons.results.forEach((obj: any, idx: number) => obj.id = idx + 1);
 
-        setPokemons(data.results);
+        setData(pokemons.results);
       }
       catch (e) {
         console.log(`Error: ${e}`);
@@ -51,9 +54,15 @@ const pokedex = () => {
     getData();
   }, []);
 
-  handleChange(e => {
-    e.target.value;
-  });
+  useEffect(() => {
+    const filtering = () => {
+      const filtered = search.toLowerCase();
+      setFilteredPokemons((): any => {
+        data.filter((poke: any) => poke.name.includes(filtered))
+      });
+    }
+    filtering();
+  }, [data, search]);
 
   return (
     <div>
@@ -64,32 +73,36 @@ const pokedex = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <MainCustom>
         <PokesmonsScrow>
           <Link href={'/'}>Home</Link>
           <Logo val/>
 
           <Paragraphy>Everything you wanted to know about<br /> your favorite pocket monster!</Paragraphy>
 
-          <InputSearch onChange={handleChange()}/>
+          <InputSearch value={search} onChange={(e) => setSearch(e.target.value)}/>
 
           <hr />
 
           <PokeScrow>
-            <ul>
-              {pokemons.map(poke => (
-                <li key={poke.id}>{`#${poke.id}`} - {poke.name}</li>
-              ))}
-            </ul>
+            {search ? data.map(poke => (
+              <div key={poke.id}>
+                #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
+              </div>
+            )) : filteredPokemons.map(poke => (
+              <div key={poke.name}>
+                #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
+              </div>
+            ))}
           </PokeScrow>
         </PokesmonsScrow>
 
         <PokeData>
-          {pokemons.map(poke => (
+          {/* {data.map(poke => (
             <Card key={poke.id} pokemon={poke}/>
-          ))}
+          ))} */}
         </PokeData>
-      </main>
+      </MainCustom>
     </div>
   );
 };

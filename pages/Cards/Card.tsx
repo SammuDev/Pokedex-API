@@ -1,3 +1,5 @@
+import BodyCustom from "../../styles/styledsCard/BodyCustom";
+
 type Props = {
   pokemon: {
     name: string;
@@ -7,10 +9,11 @@ type Props = {
 
 const Card = ({pokemon}: Props) => {
   return (
-    <div>
+    <BodyCustom>
+      <h2>#{pokemon.id} - {pokemon.name}</h2>
+
       <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} alt={pokemon.name} />
-      <h2>{pokemon.name}</h2>
-    </div>
+    </BodyCustom>
   );
 };
 
