@@ -6,6 +6,7 @@ import PokesmonsScrow from "../styles/styledsPokedex/PokesmonsScrow";
 import Logo from "../styles/styledsHome/Logo";
 import Paragraphy from "../styles/styledsPokedex/Paragraphy";
 import InputSearch from "../styles/styledsPokedex/InputSearch";
+import Card from "../components/Card";
 
 type PokeProps = {
   id: string;
@@ -36,6 +37,8 @@ const pokedex = () => {
         const data = await res.json();
         console.log(data.results);
 
+        data.results.forEach((obj: any, idx: number) => obj.id = idx + 1);
+
         setPokemons(data.results);
       }
       catch (e) {
@@ -54,9 +57,13 @@ const pokedex = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <section>
+
+      </section>
 
       <main>
         <PokesmonsScrow>
+          <Link href={'/'}>Home</Link>
           <Logo val/>
 
           <Paragraphy>Everything you wanted to know about<br /> your favorite pocket monster!</Paragraphy>
@@ -68,13 +75,14 @@ const pokedex = () => {
           <PokeScrow>
             <ul>
               {pokemons.map(poke => (
-                <li key={poke.name}>{`#${poke.id}`} - {poke.name}</li>
+                <li key={poke.id}>{`#${poke.id}`} - {poke.name}</li>
               ))}
             </ul>
           </PokeScrow>
         </PokesmonsScrow>
+
+        OI
       </main>
-      <Link href={'/'}>Home</Link>
     </div>
   );
 };
