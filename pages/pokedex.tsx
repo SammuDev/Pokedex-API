@@ -1,47 +1,50 @@
 import Head from "next/head";
-// import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PokeScrow from "../styles/styledsPokedex/PokeScrow";
 import Link from "next/link";
 import PokesmonsScrow from "../styles/styledsPokedex/PokesmonsScrow";
+import Logo from "../styles/styledsHome/Logo";
+import Paragraphy from "../styles/styledsPokedex/Paragraphy";
+import InputSearch from "../styles/styledsPokedex/InputSearch";
 
-// type PokeProps = {
-//   id: string;
-//   number: string;
-//   url: string;
-//   name: string;
-//   image: string;
-//   fetchedAt: string;
-//   attacks: {
-//     special: Array<{
-//       name: string;
-//       type: string;
-//       damage: number;
-//     }>
-//   }
-// };
+type PokeProps = {
+  id: string;
+  number: string;
+  url: string;
+  name: string;
+  image: string;
+  fetchedAt: string;
+  attacks: {
+    special: Array<{
+      name: string;
+      type: string;
+      damage: number;
+    }>
+  }
+};
 
 const pokedex = () => {
-  // const [pokemons, setPokemons] = useState<Array<PokeProps>>([]);
+  const [pokemons, setPokemons] = useState<Array<PokeProps>>([]);
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const maxPokemons = 10;
-  //       const url = 'https://pokeapi.co/api/v2/pokemon';
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const maxPokemons = 100;
+        const url = 'https://pokeapi.co/api/v2/pokemon';
 
-  //       const res = await fetch(`${url}/?limit=${maxPokemons}`);
-  //       const data = await res.json();
-  //       console.log(data.results);
+        const res = await fetch(`${url}/?limit=${maxPokemons}`);
+        const data = await res.json();
+        console.log(data.results);
 
-  //       setPokemons(data.results);
-  //     }
-  //     catch (e) {
-  //       console.log(`Error: ${e}`);
-  //     }
-  //   };
+        setPokemons(data.results);
+      }
+      catch (e) {
+        console.log(`Error: ${e}`);
+      }
+    };
 
-  //   getData();
-  // }, []);
+    getData();
+  }, []);
 
   return (
     <div>
@@ -54,17 +57,24 @@ const pokedex = () => {
 
       <main>
         <PokesmonsScrow>
-          <Link href={'/'}>Home</Link>
+          <Logo val/>
+
+          <Paragraphy>Everything you wanted to know about<br /> your favorite pocket monster!</Paragraphy>
+
+          <InputSearch/>
+
+          <hr />
 
           <PokeScrow>
-            {/* <ul>
+            <ul>
               {pokemons.map(poke => (
-                <li key={poke.name}>{poke.name} - URL: {poke.url}</li>
+                <li key={poke.name}>{`#${poke.id}`} - {poke.name}</li>
               ))}
-            </ul> */}
+            </ul>
           </PokeScrow>
         </PokesmonsScrow>
       </main>
+      <Link href={'/'}>Home</Link>
     </div>
   );
 };
