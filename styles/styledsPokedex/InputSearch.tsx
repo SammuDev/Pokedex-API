@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const InputSearch = styled.input.attrs({
   type: 'text',
-  placeholder: 'Search by name or number',
+  placeholder: 'Search by name',
   autoFocus: true,
 })`
   border: none;

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import PokeScrow from "../styles/styledsPokedex/PokeScrow";
 import Link from "next/link";
 import PokesmonsScrow from "../styles/styledsPokedex/PokesmonsScrow";
@@ -27,7 +27,7 @@ type PokeProps = {
   }
 };
 
-const pokedex = () => {
+const Pokedex = () => {
   const [data, setData] = useState<PokeProps[]>([]);
   const [filteredPokemons, setFilteredPokemons] = useState<PokeProps[]>([]);
   const [search, setSearch] = useState('');
@@ -35,7 +35,7 @@ const pokedex = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const maxPokemons = 100;
+        const maxPokemons = 100; // -> Quantidade de Pokemóns que podem ser visualizados!
         const url = 'https://pokeapi.co/api/v2/pokemon';
 
         const res = await fetch(`${url}/?limit=${maxPokemons}`);
@@ -97,7 +97,7 @@ const pokedex = () => {
         </PokesmonsScrow>
 
         <PokeData>
-          {data.map(poke => (
+          {filteredPokemons.map(poke => (
             <Card key={poke.id} pokemon={poke}/>
           ))}
         </PokeData>
@@ -106,4 +106,4 @@ const pokedex = () => {
   );
 };
 
-export default pokedex;
+export default Pokedex;
