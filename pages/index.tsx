@@ -45,10 +45,9 @@ export default function Home() {
 
           <form>
             <Input/>
-            <ButtonSubmit>
-              <Link href="/pokedex">Acessar</Link>
-            </ButtonSubmit>
-            {/* <Link href={'/pokedex'}>Pokedex Page</Link> */}
+              <Link href="/pokedex">
+                <ButtonSubmit>Acessar</ButtonSubmit>
+              </Link>
           </form>
         </MainBox>
       </main>

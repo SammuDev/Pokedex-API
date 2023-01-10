@@ -32,10 +32,11 @@ const Pokedex = () => {
   const [filteredPokemons, setFilteredPokemons] = useState<PokeProps[]>([]);
   const [search, setSearch] = useState('');
 
+  // ABAIxO: Requisição fething data dos Pokemons
   useEffect(() => {
     const getData = async () => {
       try {
-        const maxPokemons = 100; // -> Quantidade de Pokemóns que podem ser visualizados!
+        const maxPokemons = 300; // -> Quantidade de Pokemóns que podem ser visualizados!
         const url = 'https://pokeapi.co/api/v2/pokemon';
 
         const res = await fetch(`${url}/?limit=${maxPokemons}`);
@@ -54,6 +55,7 @@ const Pokedex = () => {
     getData();
   }, []);
 
+  //ABAIXO: Busca de Pokemons
   useEffect(() => {
     const AAA = () => {
       setFilteredPokemons(data.filter(poke => poke.name.includes(search.toLowerCase())));
@@ -72,7 +74,7 @@ const Pokedex = () => {
 
       <MainCustom>
         <PokesmonsScrow>
-          <Link href={'/'}>Home</Link>
+          {/* <Link href={'/'}>Home</Link> */}
           <Logo val/>
 
           <Paragraphy>Everything you wanted to know about<br /> your favorite pocket monster!</Paragraphy>
@@ -90,16 +92,21 @@ const Pokedex = () => {
 
             {filteredPokemons.map(poke => (
               <div key={poke.name}>
-                #{poke.id < 10 ? `**00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
+                #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
               </div>
             ))}
           </PokeScrow>
         </PokesmonsScrow>
 
         <PokeData>
+          {/* <Card/> */}
           {filteredPokemons.map(poke => (
-            <Card key={poke.id} pokemon={poke}/>
+            <Card key={poke.id} poke={poke}/>
           ))}
+
+          {/* {filteredPokemons.map(poke => (
+            <Card key={poke.id} poke={poke}/>
+          ))} */}
         </PokeData>
       </MainCustom>
     </div>
