@@ -9,6 +9,7 @@ import InputSearch from "../styles/styledsPokedex/InputSearch";
 import Card from "./Cards/Card";
 import PokeData from "../styles/styledsPokedex/PokeData";
 import MainCustom from "../styles/styledsPokedex/MainCustom";
+import Image from "next/image";
 
 type PokeProps = {
   id: number;
@@ -99,13 +100,12 @@ const Pokedex = () => {
         </PokesmonsScrow>
 
         <PokeData>
-          {/* <Card/> */}
           {filteredPokemons.map(poke => (
             <Card key={poke.id} poke={poke}/>
           ))}
 
           {/* {filteredPokemons.map(poke => (
-            <Card key={poke.id} poke={poke}/>
+            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png`} alt=''/>
           ))} */}
         </PokeData>
       </MainCustom>
