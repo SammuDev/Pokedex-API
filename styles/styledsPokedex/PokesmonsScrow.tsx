@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const PokesmonsScrow = styled.aside`
-  border: 2px solid #000;
+  /* border: 2px solid #000; */
   background: #cf4a4a;
   color: #fff;
   width: 300px;
