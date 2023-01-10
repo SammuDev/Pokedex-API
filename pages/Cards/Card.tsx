@@ -11,14 +11,14 @@ type Props = {
 const Card = ({poke}: Props) => {
   return (
     <BodyCustom>
-      #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
+      {/* #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name} */}
 
       {/* <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png`} alt={pokemon.name} /> */}
-      <Image
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.name}.png`}
+      {/* <Image
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png`}
         alt={poke.name}
         width={100}
-        height={100}/>
+        height={100}/> */}
     </BodyCustom>
   );
 };

@@ -101,11 +101,16 @@ const Pokedex = () => {
 
         <PokeData>
           {filteredPokemons.map(poke => (
-            <Card key={poke.id} poke={poke}/>
+            <img key={poke.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png`} alt=''/>
           ))}
 
+          {/* AVISO: <Image> não funciona, não sei porque mas parece que a config no arquivo
+          "next.config.js" não faz uma requisição. Provavelmente algum erro de sintaxe, procurei
+          bastante sobre isso mas não achei. Se você que está lendo agora souber de algo entre em contato
+           para compartilhar ideias. Abraços! */}
+
           {/* {filteredPokemons.map(poke => (
-            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png`} alt=''/>
+            <Image key={poke.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png`} alt='pokemons'/>
           ))} */}
         </PokeData>
       </MainCustom>
