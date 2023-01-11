@@ -39,7 +39,7 @@ const Pokedex = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const maxPokemons = 35; // -> Quantidade de Pokemóns que podem ser visualizados!
+        const maxPokemons = 100 // -> Quantidade de Pokemóns que podem ser visualizados!
         const url = 'https://pokeapi.co/api/v2/pokemon';
 
         const res = await fetch(`${url}/?limit=${maxPokemons}`);
@@ -63,8 +63,7 @@ const Pokedex = () => {
     setFilteredPokemons(data.filter(poke => poke.name.includes(search.toLowerCase())));
   }, [data, search]);
 
-  const mudanca = (id: any) => {
-    // filteredImg.pop();
+  const handlePokemons = (id: any) => {
     setFilteredImg(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`);
     console.log(`BOTÃO ${id} FUNCIONANDO!`);
     console.log(`ID's: ${filteredImg}!`);
@@ -92,7 +91,7 @@ const Pokedex = () => {
 
           <PokeScrow>
             {!search && data.map(poke => (
-              <ButtonPokemons key={poke.id} onClick={() => mudanca(poke.id)}>
+              <ButtonPokemons key={poke.id} onClick={() => handlePokemons(poke.id)}>
                 #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
               </ButtonPokemons>
             ))}
@@ -100,7 +99,7 @@ const Pokedex = () => {
             {/* =========== */}
 
             {search && filteredPokemons.map(poke => (
-              <ButtonPokemons key={poke.name} onClick={() => mudanca(poke.id)}>
+              <ButtonPokemons key={poke.name} onClick={() => handlePokemons(poke.id)}>
                 #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
               </ButtonPokemons>
             ))}
@@ -108,20 +107,11 @@ const Pokedex = () => {
         </PokesmonsScrow>
 
         <PokeData>
-          {/* ll- {filteredImg.map(() => (
-            <img key={id} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} alt='Pokemon'/>
-          ))} -ll */}
-
-          <img src={filteredImg} alt='Pokemon'/>
-
-          {/* AVISO: <Image> não funciona, não sei porque mas parece que a config no arquivo
-          "next.config.js" não faz uma requisição. Provavelmente algum erro de sintaxe, procurei
-          bastante sobre isso mas não achei. Se você que está lendo agora souber de algo entre em contato
-           para compartilhar ideias. Abraços! */}
-
-          {/* {filteredPokemons.map(poke => (
-            <Image key={poke.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png`} alt='pokemons'/>
-          ))} */}
+          <Image
+            src={filteredImg}
+            width={200}
+            height={200}
+            alt='Pokemom'/>
         </PokeData>
       </MainCustom>
     </div>

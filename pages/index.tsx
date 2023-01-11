@@ -44,10 +44,10 @@ export default function Home() {
           </PokeBoxIMG>
 
           <form>
-            <Input/>
-              <Link href="/pokedex">
-                <ButtonSubmit>Acessar</ButtonSubmit>
-              </Link>
+            {/* <Input/> */}
+            <Link href="/pokedex">
+              <ButtonSubmit>Acessar</ButtonSubmit>
+            </Link>
           </form>
         </MainBox>
       </main>
