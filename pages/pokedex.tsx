@@ -10,6 +10,7 @@ import Card from "./Cards/Card";
 import PokeData from "../styles/styledsPokedex/PokeData";
 import MainCustom from "../styles/styledsPokedex/MainCustom";
 import Image from "next/image";
+import ButtonPokemons from "../styles/styledsPokedex/ButtonPokemons";
 
 type PokeProps = {
   id: number;
@@ -37,7 +38,7 @@ const Pokedex = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const maxPokemons = 300; // -> Quantidade de Pokemóns que podem ser visualizados!
+        const maxPokemons = 5; // -> Quantidade de Pokemóns que podem ser visualizados!
         const url = 'https://pokeapi.co/api/v2/pokemon';
 
         const res = await fetch(`${url}/?limit=${maxPokemons}`);
@@ -58,10 +59,7 @@ const Pokedex = () => {
 
   //ABAIXO: Busca de Pokemons
   useEffect(() => {
-    const AAA = () => {
-      setFilteredPokemons(data.filter(poke => poke.name.includes(search.toLowerCase())));
-    };
-    AAA();
+    setFilteredPokemons(data.filter(poke => poke.name.includes(search.toLowerCase())));
   }, [data, search]);
 
   return (
@@ -86,15 +84,17 @@ const Pokedex = () => {
 
           <PokeScrow>
             {!search && data.map(poke => (
-              <div key={poke.id}>
+              <ButtonPokemons key={poke.id}>
                 #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
-              </div>
+              </ButtonPokemons>
             ))}
 
-            {filteredPokemons.map(poke => (
-              <div key={poke.name}>
+            {/* DIVIZA */}
+
+            {search && filteredPokemons.map(poke => (
+              <ButtonPokemons key={poke.name}>
                 #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
-              </div>
+              </ButtonPokemons>
             ))}
           </PokeScrow>
         </PokesmonsScrow>
