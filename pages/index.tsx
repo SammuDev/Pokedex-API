@@ -27,10 +27,10 @@ export default function Home() {
             <Logo />
 
             <EnUs>
-              <Image src="./img/settings.svg"
+              {/* <Image src="./img/settings.svg"
                 width={25}
                 height={25}
-                alt='Pokebola do Dash'/>
+                alt='Pokebola do Dash'/> */}
             </EnUs>
           </Nav>
         </header>

@@ -1,12 +1,10 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import PokeScrow from "../styles/styledsPokedex/PokeScrow";
-import Link from "next/link";
 import PokesmonsScrow from "../styles/styledsPokedex/PokesmonsScrow";
 import Logo from "../styles/styledsHome/Logo";
 import Paragraphy from "../styles/styledsPokedex/Paragraphy";
 import InputSearch from "../styles/styledsPokedex/InputSearch";
-import Card from "./Cards/Card";
 import PokeData from "../styles/styledsPokedex/PokeData";
 import MainCustom from "../styles/styledsPokedex/MainCustom";
 import Image from "next/image";
@@ -32,10 +30,10 @@ type PokeProps = {
 const Pokedex = () => {
   const [data, setData] = useState<PokeProps[]>([]);
   const [filteredPokemons, setFilteredPokemons] = useState<PokeProps[]>([]);
-  const [filteredImg, setFilteredImg] = useState(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${25}.png`);
+  const [filteredImg, setFilteredImg] = useState(`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/25.svg`);
   const [search, setSearch] = useState('');
 
-  // ABAIxO: Requisição fething data dos Pokemons
+  // ABAIXO: Requisição fething data dos Pokemons
   useEffect(() => {
     const getData = async () => {
       try {
@@ -63,8 +61,9 @@ const Pokedex = () => {
     setFilteredPokemons(data.filter(poke => poke.name.includes(search.toLowerCase())));
   }, [data, search]);
 
+  // ABAIXO: Pokemons alocados nos cards de acordo com o click de usuário
   const handlePokemons = (id: any) => {
-    setFilteredImg(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`);
+    setFilteredImg(() => `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`);
     console.log(`BOTÃO ${id} FUNCIONANDO!`);
     console.log(`ID's: ${filteredImg}!`);
   };
