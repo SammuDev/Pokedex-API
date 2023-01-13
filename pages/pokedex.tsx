@@ -12,32 +12,23 @@ import ButtonPokemons from "../styles/styledsPokedex/ButtonPokemons";
 
 type PokeProps = {
   id: number;
-  number: string;
-  url: string;
   name: string;
-  image: string;
-  fetchedAt: string;
-  search: string;
-  attacks: {
-    special: Array<{
-      name: string;
-      type: string;
-      damage: number;
-    }>
-  }
+  url: string;
 };
 
 const Pokedex = () => {
   const [data, setData] = useState<PokeProps[]>([]);
   const [filteredPokemons, setFilteredPokemons] = useState<PokeProps[]>([]);
-  const [filteredImg, setFilteredImg] = useState(`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/25.svg`);
   const [search, setSearch] = useState('');
+
+  const [filteredImg, setFilteredImg] = useState(`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/25.svg`);
+  const [onlyPokemon, setOnlyPokemon] = useState<PokeProps>();
 
   // ABAIXO: Requisição fething data dos Pokemons
   useEffect(() => {
     const getData = async () => {
       try {
-        const maxPokemons = 100 // -> Quantidade de Pokemóns que podem ser visualizados!
+        const maxPokemons = 500 // -> Quantidade de Pokemóns que podem ser visualizados!
         const url = 'https://pokeapi.co/api/v2/pokemon';
 
         const res = await fetch(`${url}/?limit=${maxPokemons}`);
@@ -62,10 +53,11 @@ const Pokedex = () => {
   }, [data, search]);
 
   // ABAIXO: Pokemons alocados nos cards de acordo com o click de usuário
-  const handlePokemons = (id: any) => {
-    setFilteredImg(() => `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`);
-    console.log(`BOTÃO ${id} FUNCIONANDO!`);
-    console.log(`ID's: ${filteredImg}!`);
+  const handlePokemons = (poke: any): void => {
+    setFilteredImg(() => `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${poke.id}.svg`);
+    setOnlyPokemon(() => poke);
+    console.log(poke);
+    console.log(`BOTÃO ${poke.id} FUNCIONANDO!`);
   };
 
   return (
@@ -90,7 +82,7 @@ const Pokedex = () => {
 
           <PokeScrow>
             {!search && data.map(poke => (
-              <ButtonPokemons key={poke.id} onClick={() => handlePokemons(poke.id)}>
+              <ButtonPokemons key={poke.id} onClick={() => handlePokemons(poke)}>
                 #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
               </ButtonPokemons>
             ))}
@@ -98,7 +90,7 @@ const Pokedex = () => {
             {/* =========== */}
 
             {search && filteredPokemons.map(poke => (
-              <ButtonPokemons key={poke.name} onClick={() => handlePokemons(poke.id)}>
+              <ButtonPokemons key={poke.name} onClick={() => handlePokemons(poke)}>
                 #{poke.id < 10 ? `00${poke.id}` : poke.id < 100 ? `0${poke.id}` : `${poke.id}`} - {poke.name}
               </ButtonPokemons>
             ))}
@@ -106,11 +98,12 @@ const Pokedex = () => {
         </PokesmonsScrow>
 
         <PokeData>
+          {/* <h2>ID: {onlyPokemon.id} / Name: {onlyPokemon.name}</h2> */}
           <Image
             src={filteredImg}
             width={200}
             height={200}
-            alt='Pokemom'/>
+            alt='Pokemon'/>
         </PokeData>
       </MainCustom>
     </div>
