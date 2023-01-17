@@ -28,7 +28,7 @@ const Pokedex = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const maxPokemons = 500 // -> Quantidade de Pokemóns que podem ser visualizados!
+        const maxPokemons = 300 // -> Quantidade de Pokemóns que podem ser visualizados!
         const url = 'https://pokeapi.co/api/v2/pokemon';
 
         const res = await fetch(`${url}/?limit=${maxPokemons}`);
