@@ -22,7 +22,9 @@ const Pokedex = () => {
   const [search, setSearch] = useState('');
 
   const [filteredImg, setFilteredImg] = useState(`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/25.svg`);
-  const [onlyPokemon, setOnlyPokemon] = useState<PokeProps>();
+
+  const [pokemonName, setPokemonName] = useState('pikachu');
+  const [pokemonId, setPokemonId] = useState(25);
 
   // ABAIXO: Requisição fething data dos Pokemons
   useEffect(() => {
@@ -53,10 +55,11 @@ const Pokedex = () => {
   }, [data, search]);
 
   // ABAIXO: Pokemons alocados nos cards de acordo com o click de usuário
-  const handlePokemons = (poke: any): void => {
+  const handlePokemons = (poke: any) => {
     setFilteredImg(() => `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${poke.id}.svg`);
-    setOnlyPokemon(() => poke);
-    console.log(poke);
+    setPokemonName(() => poke.name);
+    setPokemonId(() => poke.id);
+
     console.log(`BOTÃO ${poke.id} FUNCIONANDO!`);
   };
 
@@ -98,7 +101,7 @@ const Pokedex = () => {
         </PokesmonsScrow>
 
         <PokeData>
-          {/* <h2>ID: {onlyPokemon.id} / Name: {onlyPokemon.name}</h2> */}
+          <h2>ID: {pokemonId} / Name: {pokemonName}</h2>
           <Image
             src={filteredImg}
             width={200}
