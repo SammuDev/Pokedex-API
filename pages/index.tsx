@@ -1,14 +1,14 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import ButtonSubmit from '../styles/styledsHome/ButtonSubmit';
-import EnUs from '../styles/styledsHome/EnUs';
-import Input from '../styles/styledsHome/Input';
-import Logo from '../styles/styledsHome/Logo';
-import MainBox from '../styles/styledsHome/MainBox';
+import ButtonSubmit from '../styles/styledIndex/ButtonSubmit';
+import EnUs from '../styles/styledIndex/EnUs';
+import Input from '../styles/styledIndex/Input';
+import Logo from '../styles/styledIndex/Logo';
+import MainBox from '../styles/styledIndex/MainBox';
 
-import Nav from '../styles/styledsHome/Nav';
-import PokeBoxIMG from '../styles/styledsHome/PokeBoxIMG';
+import Nav from '../styles/styledIndex/Nav';
+import PokeBoxIMG from '../styles/styledIndex/PokeBoxIMG';
 
 export default function Home() {
 
@@ -27,10 +27,10 @@ export default function Home() {
             <Logo />
 
             <EnUs>
-              {/* <Image src="./img/settings.svg"
+              <Image src="./img/settings.svg"
                 width={25}
                 height={25}
-                alt='Pokebola do Dash'/> */}
+                alt='Pokebola do Dash'/>
             </EnUs>
           </Nav>
         </header>

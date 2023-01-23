@@ -2,7 +2,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import PokeScrow from "../styles/styledsPokedex/PokeScrow";
 import PokesmonsScrow from "../styles/styledsPokedex/PokesmonsScrow";
-import Logo from "../styles/styledsHome/Logo";
+import Logo from "../styles/styledIndex/Logo";
 import Paragraphy from "../styles/styledsPokedex/Paragraphy";
 import InputSearch from "../styles/styledsPokedex/InputSearch";
 import PokeData from "../styles/styledsPokedex/PokeData";

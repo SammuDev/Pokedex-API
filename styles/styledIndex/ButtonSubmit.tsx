@@ -6,7 +6,7 @@ const ButtonSubmit = styled.button.attrs({
   border-radius: 3px;
   background-color: #0059ff;
   color: #fff;
-  margin: 10px auto;
+  margin: -25px;
   padding: 10px 50px;
   transition: .5s;
 
